@@ -1,5 +1,12 @@
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ show.title }}"?</p>
-    <button type="submit">Confirm</button>
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Show</h2>
+    <p>Are you sure you want to delete "<strong>{{ show.title }}</strong>"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a href="{% url 'show_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
