@@ -1,0 +1,12 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# SQLite database
+db.sqlite3
+
+# Media uploads
+media/
+
+# Backup files
+*~
