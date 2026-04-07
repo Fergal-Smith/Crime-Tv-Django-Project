@@ -1,0 +1,10 @@
+<h2>Crime TV Shows</h2>
+
+<a href="{% url 'show_create' %}">Add Show</a>
+
+{% for show in show_list %}
+    <p>{{ show.title }}</p>
+    <a href="{% url 'show_detail' show.id %}">View</a>
+    <a href="{% url 'show_update' show.id %}">Edit</a>
+    <a href="{% url 'show_delete' show.id %}">Delete</a>
+{% endfor %}

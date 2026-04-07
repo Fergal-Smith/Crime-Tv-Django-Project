@@ -1,0 +1,14 @@
+<h2>{{ show.title }}</h2>
+
+<img src="{{ show.image.url }}" width="200">
+
+<p>{{ show.description }}</p>
+
+<h3>Add Review</h3>
+
+<form method="POST" action="/reviews/add/{{ show.id }}/">
+    {% csrf_token %}
+    <input type="number" name="rating">
+    <textarea name="comment"></textarea>
+    <button type="submit">Submit</button>
+</form>
