@@ -1,14 +1,20 @@
-from django.shortcuts import redirect
+from django.views.generic import ListView, CreateView
 from .models import Review
-from shows.models import Show
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
-def add_review(request, show_id):
-    if request.method == "POST":
-        show = Show.objects.get(id=show_id)
-        Review.objects.create(
-            show=show,
-            user=request.user,
-            rating=request.POST['rating'],
-            comment=request.POST['comment']
-        )
-    return redirect('show_detail', pk=show_id)
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+
+class ReviewList(ListView):
+    model = Review
+    template_name = 'reviews/review_list.html'
+
+class ReviewCreate(CreateView):
+    model = Review
+    fields = ['show', 'comment', 'rating']
+    template_name = 'reviews/review_form.html'
+    success_url = '/reviews/'
