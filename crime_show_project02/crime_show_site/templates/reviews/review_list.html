@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2>Reviews</h2>
 
-<a href="{% url 'review_create' %}" class="btn btn-primary">Add Review</a>
+<h1 class="mb-4">Reviews</h1>
+<a href="{% url 'review_create' %}" class="btn btn-danger mb-3">
+    Add Review
+</a>
+<div class="review-grid">
+  {% for review in reviews %}
+    <div class="review-card">
 
-<ul>
-    {% for review in object_list %}
-        <li>
-            {{ review.show }} - {{ review.rating }} 
-            <br>
-            {{ review.comment }}
-        </li>
-    {% endfor %}
-</ul>
+      <h4>{{ review.show.title }}</h4>
+
+      <p><strong>User:</strong> {{ review.user.username }}</p>
+      <p><strong>Rating:</strong> {{ review.rating }}/10</p>
+
+      {% if review.comment %}
+        <p class="review-comment">"{{ review.comment }}"</p>
+      {% endif %}
+
+    </div>
+  {% empty %}
+    <p>No reviews yet.</p>
+  {% endfor %}
+</div>
+
 {% endblock %}

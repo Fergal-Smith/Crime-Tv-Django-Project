@@ -11,3 +11,10 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.show} - {self.rating}"
+    
+class Review(models.Model):
+    show = models.ForeignKey(Show, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)

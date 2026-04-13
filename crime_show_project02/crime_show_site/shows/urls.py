@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
 from .views import ShowList, ShowDetail
+from .views import HomeView
 
 urlpatterns = [
-    path('', views.ShowList.as_view(), name='show_list'),
+    path('', HomeView.as_view(), name='home'),
+    path('shows/', ShowList.as_view(), name='show_list'),
     path('<int:pk>/', views.ShowDetail.as_view(), name='show_detail'),
     path('create/', views.ShowCreate.as_view(), name='show_create'),
     path('<int:pk>/update/', views.ShowUpdate.as_view(), name='show_update'),

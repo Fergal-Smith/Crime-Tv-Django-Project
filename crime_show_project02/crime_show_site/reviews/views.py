@@ -3,9 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
-
 from .models import Review
-from shows.models import Show, Rating
+from shows.models import Show
 
 
 class SignUpView(CreateView):
@@ -17,7 +16,7 @@ class SignUpView(CreateView):
 class ReviewList(ListView):
     model = Review
     template_name = 'reviews/review_list.html'
-
+    context_object_name = 'reviews'
 
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review
@@ -36,10 +35,10 @@ def submit_rating(request, show_id):
     show = get_object_or_404(Show, id=show_id)
     score = int(request.POST.get('score'))
 
-    Rating.objects.update_or_create(
+    Review.objects.update_or_create(
         user=request.user,
         show=show,
         defaults={'score': score}
     )
 
-    return redirect('show_detail', pk=show.id)  # FIX NAME IF NEEDED
+    return redirect('show_detail', pk=show.id)

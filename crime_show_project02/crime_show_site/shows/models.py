@@ -12,13 +12,4 @@ class Show(models.Model):
         return self.title
 
     def average_rating(self):
-        return self.rating_set.aggregate(Avg('score'))['score__avg']
-
-class Rating(models.Model):
-    show = models.ForeignKey(Show, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.PositiveIntegerField()
-    comment = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return f'{self.user} rated {self.show} {self.score}'
+        return self.reviews.aggregate(models.Avg('rating'))['rating__avg']

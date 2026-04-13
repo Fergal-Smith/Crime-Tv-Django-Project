@@ -8,17 +8,16 @@
   <img src="{{ show.image.url }}" alt="{{ show.title }}" width="300">
 {% endif %}
 
-<h2>Ratings</h2>
-<p>Average rating: {{ show.average_rating|default:"No ratings yet" }}</p>
-{% if show.rating_set.all %}
-  <ul>
-    {% for rating in show.rating_set.all %}
-      <li>{{ rating.user.username }}: {{ rating.score }}/10</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No ratings yet.</p>
-{% endif %}
+<h2>Reviews</h2>
+
+{% for review in show.reviews.all %}
+  <p>
+    {{ review.user.username }} - {{ review.rating }}/10
+  </p>
+  <p>{{ review.comment }}</p>
+{% empty %}
+  <p>No reviews yet.</p>
+{% endfor %}
 
 <h2>Add Your Rating</h2>
 {% if user.is_authenticated %}
@@ -38,5 +37,16 @@
       <li>{{ message }}</li>
     {% endfor %}
   </ul>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'show_update' show.id %}" class="btn btn-warning">
+        Edit Show
+    </a>
+
+    <a href="{% url 'show_delete' show.id %}" class="btn btn-danger">
+        Delete Show
+    </a>
 {% endif %}
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="bg-dark text-white p-5 mb-4 rounded">
+    <div class="container">
+        <h1>Crime TV Shows Database</h1>
+        <p>Discover, rate, and review your favourite crime shows.</p>
+        <a href="{% url 'show_list' %}" class="btn btn-primary">
+            Browse Shows
+        </a>
+    </div>
+</div>
+
+<!-- GRID SECTION -->
+<div class="container">
+    <h2 class="mb-3">Latest Shows</h2>
+
+    <div class="row">
+        {% for show in shows %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+
+                    {% if show.image %}
+                        <img src="{{ show.image.url }}" class="card-img-top">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ show.title }}</h5>
+                        <p class="card-text">
+                            {{ show.description|truncatewords:15 }}
+                        </p>
+                        <a href="{% url 'show_detail' show.id %}" class="btn btn-outline-primary">
+                            View Details
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <p>No shows available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
