@@ -24,17 +24,17 @@ class ShowDetail(DetailView):
                 user=request.user,
                 score=score
             )
-        return self.get(self, request, *args, **kwargs)
+        return self.get(request, *args, **kwargs)
 
 class ShowCreate(LoginRequiredMixin, CreateView):
     model = Show
-    fields = ['title', 'genre', 'description']
+    fields = ['title', 'genre', 'description', 'image']
     template_name = 'shows/show_form.html'
     success_url = reverse_lazy('showlist')
 
 class ShowUpdate(LoginRequiredMixin, UpdateView):
     model = Show
-    fields = ['title', 'genre', 'description']
+    fields = ['title', 'genre', 'description', 'image']
     template_name = 'shows/show_form.html'
     success_url = reverse_lazy('showlist')
 

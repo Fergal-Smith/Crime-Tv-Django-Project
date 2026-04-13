@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User  # Needed for Rating.user
+from django.contrib.auth.models import User
+from django.db.models import Avg
 
 class Show(models.Model):
     title = models.CharField(max_length=100)
@@ -14,9 +15,10 @@ class Show(models.Model):
         return self.rating_set.aggregate(Avg('score'))['score__avg']
 
 class Rating(models.Model):
-    show = models.ForeignKey(Show, on_delete=models.CASCADE)  # References Show
+    show = models.ForeignKey(Show, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.PositiveIntegerField()
+    comment = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.user} rated {self.show} {self.score}'

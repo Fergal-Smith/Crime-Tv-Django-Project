@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import ReviewList, ReviewCreate
+from .views import submit_rating
 
 urlpatterns = [
     path('', ReviewList.as_view(), name='review_list'),

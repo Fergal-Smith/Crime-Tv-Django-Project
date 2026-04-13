@@ -4,12 +4,15 @@
 <h1>{{ show.title }}</h1>
 <p><strong>Genre:</strong> {{ show.genre }}</p>
 <p>{{ show.description }}</p>
+{% if show.image %}
+  <img src="{{ show.image.url }}" alt="{{ show.title }}" width="300">
+{% endif %}
 
 <h2>Ratings</h2>
+<p>Average rating: {{ show.average_rating|default:"No ratings yet" }}</p>
 {% if show.rating_set.all %}
   <ul>
     {% for rating in show.rating_set.all %}
-    <p>Average rating: {{ show.average_rating|default:"No ratings yet" }}</p>
       <li>{{ rating.user.username }}: {{ rating.score }}/10</li>
     {% endfor %}
   </ul>
