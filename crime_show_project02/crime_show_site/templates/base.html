@@ -29,6 +29,9 @@
                         <a href="{% url 'login' %}">Login</a>
                         <a href="{% url 'signup' %}">Sign Up</a>
                     {% endif %}
+                    {% if show.image %}
+                      <img src="{{ show.image.url }}" width="200"> 
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -18,3 +18,18 @@ class ReviewCreate(CreateView):
     fields = ['show', 'comment', 'rating']
     template_name = 'reviews/review_form.html'
     success_url = '/reviews/'
+
+def submit_rating(request, show_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    show = get_object_or_404(Show, id=show_id)
+    score = int(request.POST.get('score'))
+
+    Rating.objects.update_or_create(
+        user=request.user,
+        show=show,
+        defaults={'score': score}
+    )
+
+    return redirect('showdetail', pk=show.id)

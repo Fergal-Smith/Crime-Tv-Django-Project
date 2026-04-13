@@ -5,9 +5,13 @@ class Show(models.Model):
     title = models.CharField(max_length=100)
     genre = models.CharField(max_length=50)
     description = models.TextField()
+    image = models.ImageField(upload_to='shows/', blank=True, null=True)
 
     def __str__(self):
         return self.title
+
+    def average_rating(self):
+        return self.rating_set.aggregate(Avg('score'))['score__avg']
 
 class Rating(models.Model):
     show = models.ForeignKey(Show, on_delete=models.CASCADE)  # References Show

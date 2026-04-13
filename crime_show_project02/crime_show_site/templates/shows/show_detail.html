@@ -9,6 +9,7 @@
 {% if show.rating_set.all %}
   <ul>
     {% for rating in show.rating_set.all %}
+    <p>Average rating: {{ show.average_rating|default:"No ratings yet" }}</p>
       <li>{{ rating.user.username }}: {{ rating.score }}/10</li>
     {% endfor %}
   </ul>
