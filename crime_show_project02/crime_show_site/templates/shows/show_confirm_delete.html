@@ -5,8 +5,8 @@
     <p>Are you sure you want to delete "<strong>{{ show.title }}</strong>"?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirm</button>
-        <a href="{% url 'show_list' %}" class="btn btn-secondary">Cancel</a>
+        <button class="btn btn-primary">Confirm</button>
+        <a href="{% url 'show_list' %}" class="btn btn-primary">Cancel</a>
     </form>
 </div>
 {% endblock %}

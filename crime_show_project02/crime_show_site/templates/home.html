@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- HERO SECTION -->
 <div class="bg-dark text-white p-5 mb-4 rounded">
     <div class="container">
-        <h1>Crime TV Shows Database</h1>
+        <h1>Crime TV</h1>
         <p>Discover, rate, and review your favourite crime shows.</p>
         <a href="{% url 'show_list' %}" class="btn btn-primary">
             Browse Shows
@@ -12,7 +11,12 @@
     </div>
 </div>
 
-<!-- GRID SECTION -->
+{% if user.is_authenticated %}
+<a href="{% url 'show_add' %}" class="btn btn-primary"</button>
+    Add Show
+</a>
+{% endif %}
+
 <div class="container">
     <h2 class="mb-3">Latest Shows</h2>
 

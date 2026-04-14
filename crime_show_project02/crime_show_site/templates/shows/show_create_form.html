@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container mt-4">
-    <h2>{{ view.title }}</h2>
+
+        {% if object %}
+    <h2>Edit Show</h2>
+{% else %}
+    <h2>Add Show</h2>
+{% endif %}
+
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Submit</button>
-        <a href="{% url 'show_list' %}" class="btn btn-secondary">Cancel</a>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% url 'show_list' %}" class="btn btn-primary">Cancel</a>
     </form>
 </div>
 {% endblock %}

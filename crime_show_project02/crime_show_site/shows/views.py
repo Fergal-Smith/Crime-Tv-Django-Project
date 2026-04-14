@@ -43,7 +43,7 @@ class ShowCreate(LoginRequiredMixin, CreateView):
     model = Show
     fields = ['title', 'genre', 'description', 'image']
     template_name = 'shows/show_form.html'
-    success_url = reverse_lazy('show_list')
+    success_url = reverse_lazy('home')
 
 class ShowUpdate(LoginRequiredMixin, UpdateView):
     model = Show

@@ -2,8 +2,8 @@
 {% block content %}
 
 <h1 class="mb-4">Reviews</h1>
-<a href="{% url 'review_create' %}" class="btn btn-danger mb-3">
-    Add Review
+<a href="{% url 'review_create' %}" class="btn btn-primary">
+  Add Review
 </a>
 <div class="review-grid">
   {% for review in reviews %}
