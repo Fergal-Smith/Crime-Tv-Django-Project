@@ -1,34 +1,47 @@
 body {
-    background-color: #0b0b0b;
-    color: rgb(255, 255, 255);
+    background-color: #141414;
+    color: white;
     font-family: Arial, sans-serif;
 }
 
 .show-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
-    padding: 20px;
+    align-items: stretch;
 }
 
 .show-card {
     background-color: #2b2b2b;
-    border-radius: 12px;
-    padding: 15px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
     color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .show-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
-/* title styling */
+.show-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
 .show-card h2 {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin: 10px 0;
+}
+
+.show-card .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 60px;
 }
 
 .show-card a {
@@ -38,26 +51,6 @@ body {
 
 .show-card a:hover {
     color: #e50914;
-}
-
-
-.show-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 20px;
-    margin-bottom: 10px;
-}
-
-
-.show-card p {
-    font-size: 14px;
-    color: #f7f7f7;
-}
-
-body {
-    background-color: #141414;
-    color: white;
 }
 
 .review-grid {
@@ -87,7 +80,13 @@ form h1, form h2, form h3 {
 }
 
 .btn-primary {
-    background-color: #0d6efd;
+    background-color.show-card .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 60px;
+}: #0d6efd;
     border-color: #0d6efd;
 }
 
