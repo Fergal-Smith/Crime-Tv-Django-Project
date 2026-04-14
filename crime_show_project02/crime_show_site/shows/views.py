@@ -5,11 +5,17 @@ from .models import Show
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from reviews.models import Review 
+from django.db.models import Avg
 
 class HomeView(ListView):
     model = Show
     template_name = 'home.html'
     context_object_name = 'shows'
+
+    def get_queryset(self):
+        return Show.objects.annotate(
+            avg_rating=Avg('reviews__rating')
+        ).order_by('-avg_rating')
 
 class ShowList(ListView):
     model = Show

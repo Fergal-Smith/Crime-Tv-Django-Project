@@ -21,7 +21,7 @@ class ReviewList(ListView):
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review
     fields = ['show', 'comment', 'rating']
-    success_url = reverse_lazy('show_list')  # FIX THIS NAME TO MATCH urls.py
+    success_url = reverse_lazy('show_list') 
 
     def form_valid(self, form):
         form.instance.user = self.request.user
